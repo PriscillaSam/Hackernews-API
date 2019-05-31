@@ -13,9 +13,22 @@ class Feed extends Model {
       url,
       description
     });
+
     console.log(link, )
     const links = await prisma.links();
+  }
 
+  create(context, args, isFeed) {
+    const { url, description } = args;
+    const link = context.prisma.createLink({
+      url,
+      description
+    });
+    return link;
+  }
+
+  getAll(context) {
+    return context.prisma.links();
   }
 }
 
